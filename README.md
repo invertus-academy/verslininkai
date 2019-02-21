@@ -2,8 +2,8 @@
 Komandos dalyviai: Lukas ir Modestas
 
 
-Ideja: WhishList
+Ideja: WhshList
 
-Vartotojas: Mato savo pasirinktus norimus pirkti veliau pirkinius. (iösaugoti)
-Adminas: Statistika kuriu produktu buvo pasirinkta daugiausiai, kurie produktai, brandas populiariausias iö norimu prekiu pirkti veliau.
+Vartotojas: Mato savo pasirinktus norimus pirkti veliau pirkinius. (i≈°saugoti)
+Adminas: Statistika kuriu produktu buvo pasirinkta daugiausiai, kurie produktai, brandas populiariausias i≈° norimu prekiu pirkti veliau.
 
