@@ -32,4 +32,5 @@ class wishlist extends Module
 //        hooko atvaizdavimo funkcija
         return '<h1>Hello World</h1>';
     }
+    //sveiki
 }
