@@ -15,6 +15,7 @@ class wishlist extends Module
         $this->tab = 'front_office_features';
         $this->version = '0.1';
 
+
         parent::__construct();
 
         $this->displayName = $this->l("WishList");
@@ -25,11 +26,22 @@ class wishlist extends Module
 
     public function install()
     {
-        return parent::install() && $this->registerHook('displayHome'); //hook name from documentation hook list
+        return parent::install() && $this->registerHook('displayNav2')
+            && $this->registerHook('productActions')
+            && $this->registerHook('actionFrontControllerSetMedia'); //hook name from documentation hook list
     }
 
-    public function hookDisplayHome(){
-//        hooko atvaizdavimo funkcija
-        return '<h1>Hello World</h1>';
+    public function hookActionFrontControllerSetMedia(){
+        $this->context->controller->addCSS($this->_path.'views/css/style.css', 'all');
     }
+
+    public function hookDisplayNav2(){
+//        hooko atvaizdavimo funkcija
+        return $this->context->smarty->fetch('module:wishlist/views/templates/front/buttonNav.tpl');
+    }
+
+    public function hookProductActions(){
+        return $this->context->smarty->fetch('module:wishlist/views/templates/front/addButton.tpl');
+    }
+
 }

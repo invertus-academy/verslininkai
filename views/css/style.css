@@ -1,0 +1,23 @@
+ #wishlist>div {
+     height: 3rem;
+     padding: .75rem;
+     margin-left: .9375rem;
+     text-align: center;
+     white-space: nowrap;
+    background-color: #87d5fa;
+}
+ #wishlist>div a{
+      color: #fff;
+ }
+
+ #addToWishlistButton{
+      box-shadow: 2px 2px 4px 0 rgba(0,0,0,.2);
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: .5rem 1.25rem;
+      background-color: #87d5fa;
+      border: none;
+      color: #fff;
+ }
+
+
