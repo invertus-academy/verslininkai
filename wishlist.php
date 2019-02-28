@@ -25,12 +25,36 @@ class wishlist extends Module
 
     public function install()
     {
-        return parent::install() && $this->registerHook('displayHome'); //hook name from documentation hook list
+        return parent::install() && $this->registerHook('displayHome') && $this->createTable(); //hook name from documentation hook list
+
+
+
     }
 
     public function hookDisplayHome(){
 //        hooko atvaizdavimo funkcija
         return '<h1>Hello World</h1>';
     }
-    //sveiki
+
+    protected function createTable()
+    {
+        $res = true;
+        $res &= Db::getInstance()->execute('
+            CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'wishlist` (
+                `id_wishlist` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                `id_customer` int(10) unsigned NOT NULL,
+                PRIMARY KEY (`id_wishlist`)
+            ) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=UTF8;
+        ');
+
+        $res &= Db::getInstance()->execute('
+            CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'wishlist_product` (
+                `id_wishlist` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                `id_product` int(10) unsigned NOT NULL,
+                PRIMARY KEY (`id_wishlist`)
+            ) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=UTF8;
+        ');
+        return $res;
+
+    }
 }
