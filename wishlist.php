@@ -33,6 +33,7 @@ class wishlist extends Module
             && $this->registerHook('displayHome') && $this->createTable(); //hook name from documentation hook list
     }
 
+//FRONT
     public function hookActionFrontControllerSetMedia()
     {
         $this->context->controller->addCSS($this->_path . 'views/css/style.css', 'all');
@@ -42,16 +43,16 @@ class wishlist extends Module
     public function hookDisplayNav2()
     {
 //        hooko atvaizdavimo funkcija
-        return $this->context->smarty->fetch('module:wishlist/views/templates/front/buttonNav.tpl');
+        return $this->context->smarty->fetch('module:wishlist/views/templates/front/hooks/buttonNav.tpl');
     }
 
 
     public function hookProductActions()
     {
-        return $this->context->smarty->fetch('module:wishlist/views/templates/front/addButton.tpl');
+        return $this->context->smarty->fetch('module:wishlist/views/templates/front/hooks/addButton.tpl');
     }
 
-
+//BACK
     protected function createTable()
     {
         $res = true;
@@ -71,6 +72,30 @@ class wishlist extends Module
             ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=UTF8;
         ');
         return $res;
+    }
 
+    public function getContent()
+    {
+        $controllerLink = Context::getContext()->link->getAdminLink('AdminWishlistConfiguration');
+
+        Tools::redirectAdmin(($controllerLink));
+    }
+
+
+    public function getTabs()
+    {
+        return [
+            [
+                'name' => 'wishlish',
+                'parent_class_name' => 'WishlistParentModulesSf',
+                'class_name' => 'WishlistModuleParent',
+                'visible' => false
+            ],
+            [
+                'name' => 'Configuration',
+                'parent_class_name' => 'AdminWishlistParentController',
+                'class_name' => 'AdminWishlistConfiguration'
+            ]
+        ];
     }
 }
