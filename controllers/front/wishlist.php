@@ -35,4 +35,14 @@ class WishlistWishlistModuleFrontController extends ModuleFrontController
 //        }
 
     }
+
+    public function test(){
+        $wishlist_id = 1; //get from database
+
+        $wishlist = new Wishlist($wishlist_id);
+
+        $product_id = 1; //get from post
+
+        $wishlist->addProduct($product_id);
+    }
 }
