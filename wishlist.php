@@ -50,6 +50,11 @@ class wishlist extends Module
 
     public function hookDisplayReassurance()
     {
+        $link = $this->context->link->getModuleLink('wishlist', 'wishlist', [
+            'product_id' => Tools::getValue('id_product')
+        ]);
+        $this->context->smarty->assign('wishlistURL', $link);
+
         return $this->context->smarty->fetch('module:wishlist/views/templates/front/hooks/addButton.tpl');
     }
 
@@ -61,18 +66,17 @@ class wishlist extends Module
             CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'wishlist` (
                 `id_wishlist` int(10) unsigned NOT NULL AUTO_INCREMENT,
                 `id_customer` int(10) unsigned NOT NULL,
-                `id_product` int(10) unsigned NOT NULL,
                 PRIMARY KEY (`id_wishlist`)
             ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=UTF8;
         ');
 
-//        $res &= Db::getInstance()->execute('
-//            CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'wishlist_product` (
-//                `id_wishlist` int(10) unsigned NOT NULL AUTO_INCREMENT,
-//                `id_product` int(10) unsigned NOT NULL,
-//                PRIMARY KEY (`id_wishlist`)
-//            ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=UTF8;
-//        ');
+        $res &= Db::getInstance()->execute('
+            CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'wishlist_product` (
+                `id_wishlist` int(10) unsigned NOT NULL,
+                `id_product` int(10) unsigned NOT NULL,
+                PRIMARY KEY (`id_wishlist`)
+            ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=UTF8;
+        ');
         return $res;
     }
 
