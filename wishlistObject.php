@@ -28,5 +28,4 @@ class wishlistObject extends ObjectModel
 			'.(int) ($id_customer).'
 			'.(int)($id_product).')'));
     }
-
 }
