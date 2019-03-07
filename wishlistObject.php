@@ -21,9 +21,10 @@ class wishlistObject extends ObjectModel
 
     public function addProduct($id_product)
     {
+
         return (Db::getInstance()->execute('
 			INSERT INTO `'._DB_PREFIX_.'wishlist_product` (`id_product`, `id_wishlist`) VALUES(
-			'.(int) ($id_product).'
+			'.(int) ($id_product).',
 			'.(int)($this->id).')'));
     }
 

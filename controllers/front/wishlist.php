@@ -45,6 +45,7 @@ class WishlistWishlistModuleFrontController extends ModuleFrontController
             $id = null;
             if (Tools::isSubmit('submit_wishlist')) {
                 $this->assign();
+
             }
         }
     }
@@ -53,9 +54,15 @@ class WishlistWishlistModuleFrontController extends ModuleFrontController
     private function assign()
     {
         $wishlistObject = new wishlistObject();
-        if($wishlistObject->checkWishListExist($this->context->customer->id) === false) {
+//        if($wishlistObject->checkWishListExist($this->context->customer->id) === false) {
+//        reikia keisti if salyga
             $wishlistObject->id_customer = (int)$this->context->customer->id;
             $wishlistObject->save();
-        }
+            dump($wishlistObject->id);
+//            die();
+//        }
+        $product_id = Tools::getValue('product_id');
+        $wishlistObject->addProduct($product_id);
+
     }
 }
