@@ -28,9 +28,10 @@ class wishlist extends Module
     {
 
         return parent::install() && $this->registerHook('displayNav2')
-            && $this->registerHook('productActions')
+            && $this->registerHook('displayReassurance')
             && $this->registerHook('actionFrontControllerSetMedia')
-            && $this->registerHook('displayHome') && $this->createTable(); //hook name from documentation hook list
+            && $this->registerHook('displayHome')
+            && $this->createTable(); //hook name from documentation hook list
     }
 
 //FRONT
@@ -47,7 +48,7 @@ class wishlist extends Module
     }
 
 
-    public function hookProductActions()
+    public function hookDisplayReassurance()
     {
         return $this->context->smarty->fetch('module:wishlist/views/templates/front/hooks/addButton.tpl');
     }
@@ -98,4 +99,5 @@ class wishlist extends Module
             ]
         ];
     }
+
 }
