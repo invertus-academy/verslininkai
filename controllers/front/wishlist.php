@@ -35,4 +35,37 @@ class WishlistWishlistModuleFrontController extends ModuleFrontController
 //        }
 
     }
+
+    public function assign()
+    {
+        $wishlistObject = new wishlistObject();
+        $id_customer =null;
+        $id_product = Tools::getValue('id_product');
+
+        if ($this->context->customer->isLogged())
+        {
+            $id_customer =(int)$this->context->customer->id;
+        }
+        $wishlistObject->addProduct($id_product,$id_customer);
+    }
+
+//    public function postProcess()
+//    {
+//        parent::postProcess();
+//
+//        $id_product = 1;
+//        $wishlistobject = new wishlistObject();
+//        $wishlistobject->addProduct($id_product);
+//    }
+
+//    public function test(){
+//        $wishlist_id = 1; //get from database
+//
+//        $wishlist = new Wishlist($wishlist_id);
+//
+//        $product_id = 1; //get from post
+//
+//        $wishlist->addProduct($product_id);
+//
+//    }
 }

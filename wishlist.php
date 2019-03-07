@@ -60,17 +60,18 @@ class wishlist extends Module
             CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'wishlist` (
                 `id_wishlist` int(10) unsigned NOT NULL AUTO_INCREMENT,
                 `id_customer` int(10) unsigned NOT NULL,
-                PRIMARY KEY (`id_wishlist`)
-            ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=UTF8;
-        ');
-
-        $res &= Db::getInstance()->execute('
-            CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'wishlist_product` (
-                `id_wishlist` int(10) unsigned NOT NULL AUTO_INCREMENT,
                 `id_product` int(10) unsigned NOT NULL,
                 PRIMARY KEY (`id_wishlist`)
             ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=UTF8;
         ');
+
+//        $res &= Db::getInstance()->execute('
+//            CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'wishlist_product` (
+//                `id_wishlist` int(10) unsigned NOT NULL AUTO_INCREMENT,
+//                `id_product` int(10) unsigned NOT NULL,
+//                PRIMARY KEY (`id_wishlist`)
+//            ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=UTF8;
+//        ');
         return $res;
     }
 
