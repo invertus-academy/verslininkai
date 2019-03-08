@@ -9,7 +9,7 @@
 class wishlistObject extends ObjectModel
 {
     public $id_customer;
-
+    public $id;
     public static $definition = array(
         'table' => 'wishlist',
         'primary' => 'id_wishlist',
@@ -19,18 +19,21 @@ class wishlistObject extends ObjectModel
     );
 
 
-    public function addProduct($id_product)
+    public function addProduct($id_product, $id_customer)
     {
+        $getCustomersID = (Db::getInstance()->getValue(
+            'SELECT id_wishlist FROM `'._DB_PREFIX_.'wishlist` WHERE id_customer = '.(int)$id_customer));
 
         return (Db::getInstance()->execute('
 			INSERT INTO `'._DB_PREFIX_.'wishlist_product` (`id_product`, `id_wishlist`) VALUES(
 			'.(int) ($id_product).',
-			'.(int)($this->id).')'));
+			'.(int)($getCustomersID).')'));
+
     }
 
-    public function checkWishListExist($customer_id){
-        return (bool)(Db::getInstance()->executeS(
-            'SELECT COUNT(*) FROM `'._DB_PREFIX_.'wishlist` WHERE id_customer =   '.(int)$customer_id));
+    public function checkWishListExist($id_customer){
+        return (bool)(Db::getInstance()->getValue(
+            'SELECT COUNT(*) FROM `'._DB_PREFIX_.'wishlist` WHERE id_customer =   '.(int)$id_customer));
     }
 
 }

@@ -72,9 +72,10 @@ class wishlist extends Module
 
         $res &= Db::getInstance()->execute('
             CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'wishlist_product` (
+                `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
                 `id_wishlist` int(10) unsigned NOT NULL,
                 `id_product` int(10) unsigned NOT NULL,
-                PRIMARY KEY (`id_wishlist`)
+                 PRIMARY KEY (`id`)
             ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=UTF8;
         ');
         return $res;

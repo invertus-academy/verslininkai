@@ -5,7 +5,8 @@
  * Date: 2019-03-01
  * Time: 14:09
  */
-require_once (__DIR__.'/../../wishlistObject.php');
+require_once(__DIR__ . '/../../wishlistObject.php');
+
 class WishlistWishlistModuleFrontController extends ModuleFrontController
 {
     public $auth = true;
@@ -54,15 +55,19 @@ class WishlistWishlistModuleFrontController extends ModuleFrontController
     private function assign()
     {
         $wishlistObject = new wishlistObject();
-//        if($wishlistObject->checkWishListExist($this->context->customer->id) === false) {
-//        reikia keisti if salyga
+
+        if ($wishlistObject->checkWishListExist($this->context->customer->id) === false) {
             $wishlistObject->id_customer = (int)$this->context->customer->id;
             $wishlistObject->save();
-            dump($wishlistObject->id);
-//            die();
-//        }
-        $product_id = Tools::getValue('product_id');
-        $wishlistObject->addProduct($product_id);
+            $product_id = Tools::getValue('product_id');
+            $wishlistObject->addProduct($product_id, $this->context->customer->id);
+//            $wishlistObject->save();
+//            dump($this->context->customer->id);
+        }
+        else {
+            $product_id = Tools::getValue('product_id');
+            $wishlistObject->addProduct($product_id, $this->context->customer->id);
+        }
 
     }
 }
