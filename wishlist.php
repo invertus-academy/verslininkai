@@ -32,6 +32,7 @@ class wishlist extends Module
             && $this->registerHook('actionFrontControllerSetMedia')
             && $this->registerHook('displayHome')
             && $this->createTable(); //hook name from documentation hook list
+
     }
 
 //FRONT
@@ -105,5 +106,23 @@ class wishlist extends Module
             ]
         ];
     }
+
+    public function uninstall($delete_params = true)
+    {
+        if (($delete_params && !$this->deleteTables()) || !parent::uninstall())
+            return false;
+        return true;
+    }
+    private function deleteTables()
+    {
+        return Db::getInstance()->execute(
+            'DROP TABLE IF EXISTS
+			`'._DB_PREFIX_.'wishlist`,
+			`'._DB_PREFIX_.'wishlist_product`'
+        );
+    }
+
+
+
 
 }

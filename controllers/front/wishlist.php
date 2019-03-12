@@ -39,7 +39,7 @@ class WishlistWishlistModuleFrontController extends ModuleFrontController
         $wishlist = $wishlistObject->showWishlistProducts($this->context->customer->id);
         dump($wishlist = $wishlistObject->showWishlistProducts($this->context->customer->id));
         $this->context->smarty->assign('wishlist', $wishlist);
-
+//        dump(Tax::getTaxes($this->context->language->id));
     }
 
 
@@ -70,10 +70,12 @@ class WishlistWishlistModuleFrontController extends ModuleFrontController
             $wishlistObject->save();
             $product_id = Tools::getValue('product_id');
             $wishlistObject->addProduct($product_id, $this->context->customer->id);
+//            Tools::redirect($this->context->link->getModuleLink($this->module->name, 'wishlist'));
         }
         else {
             $product_id = Tools::getValue('product_id');
             $wishlistObject->addProduct($product_id, $this->context->customer->id);
+//            Tools::redirect($this->context->link->getModuleLink($this->module->name, 'wishlist'));
         }
 
     }
@@ -83,12 +85,14 @@ class WishlistWishlistModuleFrontController extends ModuleFrontController
         $id_customer = $this->context->customer->id;
         $wishlistObject = new wishlistObject();
         $wishlistObject->deleteProductFromWishlist($id, $id_customer);
+        Tools::redirect($this->context->link->getModuleLink($this->module->name, 'wishlist'));
     }
 
     public function deleteAll(){
         $id_customer = $this->context->customer->id;
         $wishlistObject = new wishlistObject();
         $wishlistObject->deleteAllWishlist($id_customer);
+        Tools::redirect($this->context->link->getModuleLink($this->module->name, 'wishlist'));
     }
 
 }

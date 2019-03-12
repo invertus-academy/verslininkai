@@ -11,6 +11,6 @@ class AdminWishlistConfigurationController extends ModuleAdminController
     public function __construct()
     {
         parent::__construct();
-//       die('hello world');
+//       echo 'hello';
     }
 }
