@@ -28,13 +28,18 @@ class WishlistWishlistModuleFrontController extends ModuleFrontController
     public function initContent()
     {
         parent::initContent();
-        $this->setTemplate('module:wishlist/views/templates/front/test.tpl');
+        $this->setTemplate('module:wishlist/views/templates/front/wishlist.tpl');
         $this->context->link->getModuleLink('wishlistObject', 'wishlistObject');
 
 //        if (!$this->context->customer->isLogged() && $this->php_self != 'authentication' && $this->php_self != 'password') {
 //
 //            Tools::redirect('index.php?controller=authentication?back=my-account');
 //        }
+        $wishlistObject = new wishlistObject();
+        $wishlist = $wishlistObject->showWishlistProducts($this->context->customer->id);
+        dump($wishlist = $wishlistObject->showWishlistProducts($this->context->customer->id));
+        $this->context->smarty->assign('wishlist', $wishlist);
+
     }
 
 
@@ -46,9 +51,13 @@ class WishlistWishlistModuleFrontController extends ModuleFrontController
             $id = null;
             if (Tools::isSubmit('submit_wishlist')) {
                 $this->assign();
-
+            }elseif (Tools::isSubmit('submit_deleteFromWishlist')){
+                $this->delete();
+            }elseif (Tools::isSubmit('submit_deleteAllWishlist')){
+                $this->deleteAll();
             }
         }
+
     }
 
 
@@ -61,8 +70,6 @@ class WishlistWishlistModuleFrontController extends ModuleFrontController
             $wishlistObject->save();
             $product_id = Tools::getValue('product_id');
             $wishlistObject->addProduct($product_id, $this->context->customer->id);
-//            $wishlistObject->save();
-//            dump($this->context->customer->id);
         }
         else {
             $product_id = Tools::getValue('product_id');
@@ -70,4 +77,18 @@ class WishlistWishlistModuleFrontController extends ModuleFrontController
         }
 
     }
+
+    public function delete(){
+        $id = Tools::getValue('submit_deleteFromWishlist');
+        $id_customer = $this->context->customer->id;
+        $wishlistObject = new wishlistObject();
+        $wishlistObject->deleteProductFromWishlist($id, $id_customer);
+    }
+
+    public function deleteAll(){
+        $id_customer = $this->context->customer->id;
+        $wishlistObject = new wishlistObject();
+        $wishlistObject->deleteAllWishlist($id_customer);
+    }
+
 }
