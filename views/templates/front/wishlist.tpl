@@ -24,7 +24,7 @@
                                     </div>
                                     <div class="current-price">
                                         {*<span class="price">&euro;{round($product.price,2)}</span>*}
-                                        <span class="price">{Tools::displayPrice($product.price)}</span>
+                                        <span class="price">{Tools::displayPrice($product.price + ((Tax::getProductTaxRate($product.id_product)*$product.price)/100))}</span>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -33,7 +33,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <form action="" >
+                                    <form action="" method="post">
                                         <button type="submit" name="submit_deleteFromWishlist" value="{$product.id}" class="btn btn-danger"><i class="material-icons float-xs-left">delete</i></button>
                                     </form>
                                 </div>
@@ -45,7 +45,9 @@
                         <div class="col-md-3 float-lg-right">
                         <form action="">
                             <div>
-                                <button type="submit" name="submit_deleteAllWishlist" class=" btn btn-success">CLEAR WISHLIST</button>
+                                <form action="" method="post">
+                                    <button type="submit" name="submit_deleteAllWishlist" class=" btn btn-success">CLEAR WISHLIST</button>
+                                </form>
                             </div>
                         </form>
                         </div>
