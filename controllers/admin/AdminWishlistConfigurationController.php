@@ -15,6 +15,7 @@ class AdminWishlistConfigurationController extends ModuleAdminController
         $this->identifier = 'id_wishlist';
         $this->lang = false;
         $this->list_no_link = true;
+        $this->bootstrap = true;
         parent::__construct();
         $this->initList();
     }
