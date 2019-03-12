@@ -34,6 +34,7 @@ class wishlist extends Module
             && $this->createTable(); //hook name from documentation hook list
     }
 
+
 //FRONT
     public function hookActionFrontControllerSetMedia()
     {
@@ -99,7 +100,7 @@ class wishlist extends Module
                 'visible' => false
             ],
             [
-                'name' => 'Configuration',
+                'name' => 'tabas',
                 'parent_class_name' => 'AdminWishlistParentController',
                 'class_name' => 'AdminWishlistConfiguration'
             ]

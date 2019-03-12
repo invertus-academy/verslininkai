@@ -4,7 +4,7 @@
     <div class="container">
         <div class="card">
             <div class="card-block">
-                <h1>YOUR WISHLIST</h1>
+                <h1>{l s='YOUR WISHLIST' mod='wishlist'}</h1>
             </div>
             <hr class="separator">
             <div class="cart-overview">
@@ -14,7 +14,7 @@
                         <li class="cart-item">
                             <div class="row ml-1">
                                 <div class="col-md-3">
-                                    <img src="{$link->getImageLink($product.link_rewrite, $product.images, 'medium_default')}"
+                                    <img src="{$link->getImageLink($product.link_rewrite, $product.images, 'small_default')}"
                                          alt="">
                                 </div>
                                 <div class="col-md-3">
