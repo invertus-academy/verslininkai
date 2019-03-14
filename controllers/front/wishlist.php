@@ -15,7 +15,10 @@ class WishlistWishlistModuleFrontController extends ModuleFrontController
     public function __construct()
     {
         parent::__construct();
-        $this->authRedirection = $this->context->link->getModuleLink('wishlistObject', 'wishlistObject');
+        if(!$this->context->customer->isLogged()){
+            Tools::redirect($this->context->link->getPageLink('authentication'));
+        }
+
     }
 
     public function init()
@@ -29,7 +32,7 @@ class WishlistWishlistModuleFrontController extends ModuleFrontController
     {
         parent::initContent();
         $this->setTemplate('module:wishlist/views/templates/front/wishlist.tpl');
-        $this->context->link->getModuleLink('wishlistObject', 'wishlistObject');
+//        $this->context->link->getModuleLink('wishlist', 'wishlist');
 
 //        if (!$this->context->customer->isLogged() && $this->php_self != 'authentication' && $this->php_self != 'password') {
 //
@@ -37,7 +40,7 @@ class WishlistWishlistModuleFrontController extends ModuleFrontController
 //        }
         $wishlistObject = new wishlistObject();
         $wishlist = $wishlistObject->showWishlistProducts($this->context->customer->id);
-        dump($wishlist = $wishlistObject->showWishlistProducts($this->context->customer->id));
+//        dump($wishlist = $wishlistObject->showWishlistProducts($this->context->customer->id));
         $this->context->smarty->assign('wishlist', $wishlist);
 //        dump(Tax::getTaxes($this->context->language->id));
     }

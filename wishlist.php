@@ -101,7 +101,7 @@ class wishlist extends Module
                 'visible' => false
             ],
             [
-                'name' => 'tabas',
+                'name' => 'Wishlists',
                 'parent_class_name' => 'AdminWishlistParentController',
                 'class_name' => 'AdminWishlistConfiguration'
             ]

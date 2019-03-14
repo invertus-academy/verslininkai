@@ -53,13 +53,13 @@ class AdminWishlistConfigurationController extends ModuleAdminController
                 'align' => 'center',
                 'filter_key' => 'wl!id_customer',
             ),
-            'p_name' => array(
+            'name' => array(
                 'title' => $this->l('p_name'),
                 'type' => 'text',
                 'align' => 'center',
                 'filter_key' => 'p!name',
             ),
-            'user_email' => array(
+            'email' => array(
                 'title' => $this->l('user_email'),
                 'type' => 'text',
                 'align' => 'center',
@@ -70,7 +70,7 @@ class AdminWishlistConfigurationController extends ModuleAdminController
 
     public function renderList()
     {
-        $this->_select .= 'a.id, a.id_wishlist, a.id_product, wl.id_customer, p.name, u.email';
+        $this->_select .= 'wl.id_customer, p.name, u.email';
 
         $this->_join .= '
            LEFT JOIN ' . _DB_PREFIX_ . 'wishlist wl
