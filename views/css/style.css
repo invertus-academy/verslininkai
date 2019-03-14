@@ -18,6 +18,33 @@
       background-color: #87d5fa;
       border: none;
       color: #fff;
+     cursor: pointer;
  }
+ #addToWishlistButton:hover{
+     background-color: #5bacd2;
+ }
+.discount{
+    background: #f39d72;
+    color: #fff;
+    font-weight: 600;
+    padding: .3125rem .625rem;
+    font-size: 1rem;
+    margin-left: .625rem;
+    text-transform: uppercase;
+    display: inline-block;
+}
 
+.discountedPrice{
+    text-decoration: line-through;
+    font-weight: 400;
+}
+.priceAfterDiscount{
+    color: #f39d72;
+    font-weight: bold;
+}
 
+.priceFull{
+    color: #2fb5d2;
+    font-weight: bold;
+    margin-top: 5px;
+}

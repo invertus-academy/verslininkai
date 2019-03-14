@@ -43,7 +43,8 @@ class wishlistObject extends ObjectModel
              im.id_image as images, 
              p.price, p.id_tax_rules_group, p.wholesale_price, p.reference, 
              p.quantity, pl.description_short, pl.description, pl.link_rewrite, 
-             p.available_for_order, p.date_add, p.show_price, p.online_only, p.condition
+             p.available_for_order, p.date_add, p.show_price, p.online_only, p.condition,
+             s.reduction
             FROM '._DB_PREFIX_.'wishlist_product wlp
             LEFT JOIN '._DB_PREFIX_.'wishlist wl ON (wlp.id_wishlist = wl.id_wishlist)
             LEFT JOIN '._DB_PREFIX_.'product p ON (wlp.id_product = p.id_product)
@@ -53,6 +54,7 @@ class wishlistObject extends ObjectModel
             LEFT JOIN '._DB_PREFIX_.'category c ON (cp.id_category = c.id_category)
             LEFT JOIN '._DB_PREFIX_.'product_tag pt ON (p.id_product = pt.id_product)
             LEFT JOIN '._DB_PREFIX_.'image im ON (im.id_product = p.id_product)
+            LEFT JOIN '._DB_PREFIX_.'specific_price s ON(wlp.id_product = s.id_specific_price)
             WHERE wl.id_customer = '.(int)$id_customer.'
             GROUP BY wlp.id';
 

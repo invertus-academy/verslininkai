@@ -70,12 +70,12 @@ class WishlistWishlistModuleFrontController extends ModuleFrontController
             $wishlistObject->save();
             $product_id = Tools::getValue('product_id');
             $wishlistObject->addProduct($product_id, $this->context->customer->id);
-//            Tools::redirect($this->context->link->getModuleLink($this->module->name, 'wishlist'));
+            Tools::redirect($this->context->link->getModuleLink($this->module->name, 'wishlist'));
         }
         else {
             $product_id = Tools::getValue('product_id');
             $wishlistObject->addProduct($product_id, $this->context->customer->id);
-//            Tools::redirect($this->context->link->getModuleLink($this->module->name, 'wishlist'));
+            Tools::redirect($this->context->link->getModuleLink($this->module->name, 'wishlist'));
         }
 
     }
