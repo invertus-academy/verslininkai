@@ -4,7 +4,7 @@
     <div class="container">
         <div class="card">
             <div class="card-block">
-                <h1>YOUR WISHLIST</h1>
+                <h1>{l s='YOUR WISHLIST' mod='wishlist'}</h1>
             </div>
             <hr class="separator">
             <div class="cart-overview">
@@ -14,7 +14,7 @@
                             <li class="cart-item">
                                 <div class="row ml-1">
                                     <div class="col-md-3">
-                                        <img src="{$link->getImageLink($product.link_rewrite, $product.images, 'medium_default')}"
+                                        <img src="{$link->getImageLink($product.link_rewrite, $product.images, 'small_default')}"
                                              alt="">
                                     </div>
                                     <div class="col-md-3">
@@ -24,20 +24,7 @@
                                         </div>
                                         <div class="current-price">
                                             {*<span class="price">&euro;{round($product.price,2)}</span>*}
-                                            {*<p class="price">{Tools::displayPrice($product.price + ((Tax::getProductTaxRate($product.id_product)*$product.price)/100))}</p>*}
-                                            {if ($product.reduction !== null)}
-                                                <p class="price">
-                                                    <span class="discountedPrice">{Tools::displayPrice($product.price + ((Tax::getProductTaxRate($product.id_product)*$product.price)/100))}</span>
-                                                    <span class="discount">{$product.reduction * 100}%</span>
-                                                </p>
-                                                <p class="priceAfterDiscount">
-                                                    <span>{Tools::displayPrice((($product.price)-($product.price*$product.reduction))*(((Tax::getProductTaxRate($product.id_product))/100)+1))}</span>
-                                                </p>
-                                                {else}
-                                                <p class="priceFull">
-                                                    <span>{Tools::displayPrice($product.price + ((Tax::getProductTaxRate($product.id_product)*$product.price)/100))}</span>
-                                                </p>
-                                            {/if}
+                                            <span class="price">{Tools::displayPrice($product.price + ((Tax::getProductTaxRate($product.id_product)*$product.price)/100))}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -47,9 +34,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <form action="" method="post">
-                                            <button type="submit" name="submit_deleteFromWishlist" value="{$product.id}"
-                                                    class="btn btn-danger"><i class="material-icons float-xs-left">delete</i>
-                                            </button>
+                                            <button type="submit" name="submit_deleteFromWishlist" value="{$product.id}" class="btn btn-danger"><i class="material-icons float-xs-left">delete</i></button>
                                         </form>
                                     </div>
                                 </div>
@@ -61,9 +46,7 @@
                             <form action="">
                                 <div>
                                     <form action="" method="post">
-                                        <button type="submit" name="submit_deleteAllWishlist" class=" btn btn-success">
-                                            CLEAR WISHLIST
-                                        </button>
+                                        <button type="submit" name="submit_deleteAllWishlist" class=" btn btn-success">CLEAR WISHLIST</button>
                                     </form>
                                 </div>
                             </form>

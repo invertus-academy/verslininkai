@@ -35,6 +35,7 @@ class wishlist extends Module
 
     }
 
+
 //FRONT
     public function hookActionFrontControllerSetMedia()
     {
@@ -100,7 +101,7 @@ class wishlist extends Module
                 'visible' => false
             ],
             [
-                'name' => 'Configuration',
+                'name' => 'tabas',
                 'parent_class_name' => 'AdminWishlistParentController',
                 'class_name' => 'AdminWishlistConfiguration'
             ]
